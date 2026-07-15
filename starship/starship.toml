@@ -1,0 +1,9 @@
+# Keep it simple like Kun does — a clean two-line prompt
+add_newline = true
+[character]
+success_symbol = "[❯](#c4a7e7)"   # iris, matching Rosé Pine Moon
+error_symbol   = "[❯](#eb6f92)"   # love
+[directory]
+style = "#9ccfd8"
+[git_branch]
+style = "#f6c177"

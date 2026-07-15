@@ -1,0 +1,3 @@
+# Corporate TLS-interception cert is machine/environment specific and is
+# regenerated from the Windows cert store by rebuild.ps1 — never commit it.
+certs/
