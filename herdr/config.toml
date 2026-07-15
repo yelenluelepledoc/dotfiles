@@ -1,0 +1,5 @@
+# herdr config — see `herdr --default-config` for all options.
+[terminal]
+# Use PowerShell 7 for interactive panes so the pwsh profile loads
+# (that's what defines cc, lg, gc, ... — a bare cmd/PS 5.1 pane wouldn't have them).
+default_shell = "pwsh.exe"

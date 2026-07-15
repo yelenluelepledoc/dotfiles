@@ -79,6 +79,7 @@ Link-File $PROFILE                            (Join-Path $repo 'powershell\profi
 Link-File "$env:USERPROFILE\.config\starship.toml" (Join-Path $repo 'starship\starship.toml')
 Link-File "$env:USERPROFILE\.claude\CLAUDE.md"     (Join-Path $repo 'agents.md')
 Link-File "$env:USERPROFILE\.claude\settings.json" (Join-Path $repo 'claude\settings.json')
+Link-File "$env:APPDATA\herdr\config.toml"         (Join-Path $repo 'herdr\config.toml')
 
 # ----------------------------------------------------------------------------
 # 5. Claude Code — native installer (auto-updates in the background).
