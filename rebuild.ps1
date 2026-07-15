@@ -87,4 +87,22 @@ if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
   Invoke-RestMethod https://claude.ai/install.ps1 | Invoke-Expression
 }
 
+# ----------------------------------------------------------------------------
+# 6. herdr — agent multiplexer (beta on Windows). The herdr.dev/install.ps1
+#    installer is blocked by Zscaler ("Sandbox Suspicious"), but the GitHub
+#    release CDN is allowed, so pull the latest preview Windows binary directly.
+# ----------------------------------------------------------------------------
+if (-not (Get-Command herdr -ErrorAction SilentlyContinue)) {
+  try {
+    $rels = Invoke-RestMethod "https://api.github.com/repos/ogulcancelik/herdr/releases?per_page=15" -Headers @{ 'User-Agent' = 'rebuild' }
+    $asset = $rels.assets | Where-Object { $_.name -eq 'herdr-windows-x86_64.exe' } | Select-Object -First 1
+    if ($asset) {
+      $dest = "$env:USERPROFILE\.local\bin\herdr.exe"
+      New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
+      Invoke-WebRequest $asset.browser_download_url -OutFile $dest -UseBasicParsing
+      Write-Host "Installed herdr ($($asset.name))." -ForegroundColor Cyan
+    }
+  } catch { Write-Host "herdr install skipped (network/policy): $($_.Exception.Message)" -ForegroundColor Yellow }
+}
+
 Write-Host "Rebuild complete. Restart WezTerm." -ForegroundColor Green

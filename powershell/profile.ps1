@@ -19,6 +19,11 @@ function gs { git status }
 function gd { git diff }
 function ll { Get-ChildItem -Force }
 
+# Claude Code — cc = skip permission prompts. Note: PowerShell aliases can't
+# carry arguments, so anything with flags must be a function (with @args to
+# forward extra arguments), NOT Set-Alias.
+function cc { claude --dangerously-skip-permissions @args }
+
 # Default editor → Neovim
 $env:EDITOR = 'nvim'
 
