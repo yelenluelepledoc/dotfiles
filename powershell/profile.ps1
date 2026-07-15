@@ -24,6 +24,15 @@ function ll { Get-ChildItem -Force }
 # forward extra arguments), NOT Set-Alias.
 function cc { claude --dangerously-skip-permissions @args }
 
+# More shortcuts (functions, so they can carry arguments — unlike Set-Alias)
+function lg { lazygit @args }
+function gc { git commit @args }
+function gp { git push @args }
+function gl { git pull @args }
+function ga { git add @args }
+function .. { Set-Location .. }
+function ... { Set-Location ../.. }
+
 # Default editor → Neovim
 $env:EDITOR = 'nvim'
 

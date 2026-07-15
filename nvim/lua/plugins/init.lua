@@ -8,8 +8,15 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Auto-load every plugin spec under lua/plugins/
+-- Load plugin specs explicitly. Each module returns a table of specs; lazy
+-- flattens the nested tables. To add a plugin group, drop a new file in this
+-- folder and add a require line here.
 require('lazy').setup({
-  spec = { { import = 'plugins' } },
+  spec = {
+    require('plugins.navigation'),
+    require('plugins.git'),
+    require('plugins.colorscheme'),
+    require('plugins.treesitter'),
+  },
   change_detection = { notify = false },
 })
